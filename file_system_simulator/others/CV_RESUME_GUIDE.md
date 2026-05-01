@@ -3,6 +3,7 @@
 ## For Your Resume
 
 ### Option 1: Concise (1-2 lines)
+
 **File System Simulator** | C++11, OOP Design Patterns | [GitHub Link]
 Hierarchical file system simulator with polymorphic nodes, factory pattern for node creation, and visitor-based tree traversal. Demonstrates advanced OOP design and efficient tree algorithms.
 
@@ -11,6 +12,7 @@ Hierarchical file system simulator with polymorphic nodes, factory pattern for n
 ### Option 2: Medium (3-4 lines)
 
 **File System Simulator** - _C++11, 430 lines_
+
 - Designed and implemented a hierarchical file system simulator using advanced OOP patterns (Polymorphism, Factory, Visitor, Composite)
 - Engineered O(d·log n) path navigation and O(n) deep copy operations for recursive file structure manipulation
 - Demonstrated mastery of tree data structures, algorithm complexity analysis, and professional C++ development practices
@@ -21,6 +23,7 @@ Hierarchical file system simulator with polymorphic nodes, factory pattern for n
 ### Option 3: Detailed (6-8 lines)
 
 **File System Simulator** - _C++11, 430 lines, OOP Design Patterns_
+
 - Architected a production-ready file system simulator demonstrating four major design patterns:
   - **Polymorphism**: Node base class with File/Directory subclasses enforcing type-safe interface
   - **Factory Pattern**: Centralized NodeFactory for extensible node creation
@@ -43,12 +46,15 @@ Hierarchical file system simulator with polymorphic nodes, factory pattern for n
 ## For Portfolio/GitHub
 
 ### Project Title
+
 **File System Simulator: Advanced OOP Design & Tree Data Structures**
 
 ### Project Description
+
 A production-quality hierarchical file system simulator written in C++11, demonstrating four major design patterns and efficient tree algorithms. Perfect example of professional software engineering with clear separation of concerns, extensible architecture, and algorithm complexity optimization.
 
 ### Key Highlights
+
 - ✓ 4 major design patterns correctly implemented
 - ✓ O(d log n) algorithm complexity analysis
 - ✓ 430 lines of professional C++ code
@@ -57,9 +63,11 @@ A production-quality hierarchical file system simulator written in C++11, demons
 - ✓ Zero memory leaks
 
 ### Languages & Technologies
+
 `C++11` `OOP Design Patterns` `Data Structures` `Tree Algorithms` `Software Engineering`
 
 ### What You'll Find
+
 - **file_system.cpp** - Full implementation with inline documentation
 - **Makefile** - Professional build automation
 - **README.md** - Comprehensive technical documentation
@@ -67,6 +75,7 @@ A production-quality hierarchical file system simulator written in C++11, demons
 - **QUICK_REFERENCE.md** - Usage guide and cheat sheets
 
 ### Build & Run
+
 ```bash
 make clean && make run
 ```
@@ -76,6 +85,7 @@ make clean && make run
 ## Interview Preparation Script
 
 ### Opening Statement
+
 "I built a File System Simulator in C++11 that demonstrates four major design patterns working together in a real-world scenario. The project shows both theoretical understanding and practical implementation skills."
 
 ### Design Pattern Questions
@@ -108,6 +118,7 @@ A: "Search requires visiting every node to check if its name matches the search 
 ## Technical Interview Answers
 
 ### "What would you improve?"
+
 1. **Symlinks**: Add Symlink subclass that references another node without deep copying
 2. **Permissions**: Add rwx bits and user/group/other fields
 3. **Hard Links**: Multiple names pointing to same inode
@@ -118,11 +129,13 @@ A: "Search requires visiting every node to check if its name matches the search 
 8. **Multithreading**: Add mutex locks for concurrent access
 
 ### "What trade-offs did you make?"
+
 - **map vs unordered_map**: Chose map for O(log n) predictable performance and ordered iteration, even though unordered_map offers O(1) average case
 - **Pointers vs shared_ptr**: Used raw pointers with explicit memory management for compatibility with older C++ standards and clearer ownership semantics
 - **Deep copy vs lazy copy**: Deep copy for safety and predictability, even though it uses more memory
 
 ### "How would you test this?"
+
 ```cpp
 // Unit test framework example
 assert(fs.createFile("/test.txt", 100));
@@ -135,6 +148,7 @@ assert(fs.getTotalSize() == 100);
 ```
 
 ### "What about error cases?"
+
 - Invalid paths (non-existent parent)
 - Name collisions (file already exists)
 - Deleting non-existent nodes
@@ -146,9 +160,11 @@ assert(fs.getTotalSize() == 100);
 ## Portfolio Presentation Outline
 
 ### 1-Minute Version
+
 "This is my File System Simulator, a C++11 project demonstrating four OOP design patterns. It features polymorphic File and Directory nodes, a Factory pattern for creation, Visitor pattern for flexible traversals, and Composite pattern for the hierarchy. I focus on design patterns and algorithms—path navigation is O(d log n), and I thoroughly tested all operations."
 
 ### 5-Minute Version
+
 "I'll walk you through the architecture. [Show code] Here's the Node base class with pure virtual methods. File and Directory implement these differently—files store content and size, directories manage children. The Factory pattern (NodeFactory) centralizes creation, making it easy to extend with new node types.
 
 For traversals, I use the Visitor pattern. This PrintVisitor displays the tree structure, SearchVisitor finds nodes by name, and SizeVisitor calculates total disk usage. Each visitor walks the tree in the same way but does different operations.
@@ -191,6 +207,7 @@ Subject: File System Simulator Project - C++11 OOP Implementation
 "I wanted to share a project I'm proud of: a hierarchical file system simulator demonstrating professional C++ development and design patterns.
 
 The project showcases:
+
 - **Design Patterns**: Polymorphism, Factory, Visitor, and Composite patterns correctly implemented
 - **Algorithm Design**: O(d·log n) path navigation, O(n) operations for search and copying
 - **Code Quality**: Professional structure, comprehensive documentation, zero memory leaks

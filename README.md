@@ -25,12 +25,14 @@ This project showcases four major OOP design patterns working together in a real
 ## Quick Start
 
 ### Run the Project
+
 ```bash
 cd file_system_simulator
 ./file_system.exe
 ```
 
 ### Build from Source
+
 ```bash
 cd file_system_simulator
 g++ -std=c++11 -Wall -Wextra -O2 file_system.cpp -o file_system
@@ -38,6 +40,7 @@ g++ -std=c++11 -Wall -Wextra -O2 file_system.cpp -o file_system
 ```
 
 ### Using Make
+
 ```bash
 cd file_system_simulator
 make run
@@ -61,6 +64,7 @@ file_system_simulator/
 ## Design Patterns
 
 ### Polymorphism
+
 ```cpp
 class Node (abstract)
 ├── File (concrete)
@@ -70,25 +74,27 @@ class Node (abstract)
 ```
 
 ### Factory Pattern
+
 ```cpp
 NodeFactory::createFile()
 NodeFactory::createDirectory()
 ```
 
 ### Visitor Pattern
+
 - **PrintVisitor**: Hierarchical tree display
 - **SearchVisitor**: Find nodes by name
 - **SizeVisitor**: Calculate total size recursively
 
 ## Algorithm Complexity
 
-| Operation | Complexity | Notes |
-|-----------|-----------|-------|
+| Operation             | Complexity | Notes                        |
+| --------------------- | ---------- | ---------------------------- |
 | Create file/directory | O(d log n) | d = path depth, n = children |
-| Delete node | O(d log n) | Navigation + removal |
-| Copy subtree | O(n) | Deep recursive clone |
-| Search | O(n) | Full tree traversal |
-| Get size | O(n) | Recursive aggregation |
+| Delete node           | O(d log n) | Navigation + removal         |
+| Copy subtree          | O(n)       | Deep recursive clone         |
+| Search                | O(n)       | Full tree traversal          |
+| Get size              | O(n)       | Recursive aggregation        |
 
 ## Documentation
 
@@ -145,16 +151,16 @@ fs.deleteNode("/home/user/downloads/resume.txt");
 
 ## Technical Specifications
 
-| Aspect | Details |
-|--------|---------|
-| Language | C++11 |
-| Lines of Code | ~430 |
-| Classes | 9 (2 concrete, 3 visitors, 4 utilities) |
-| Design Patterns | 4 (Polymorphism, Factory, Visitor, Composite) |
-| Time Complexity | O(d log n) for operations |
-| Space Complexity | O(n) where n = total nodes |
-| Memory Overhead | Minimal (tree structure only) |
-| Build Time | <1 second |
+| Aspect           | Details                                       |
+| ---------------- | --------------------------------------------- |
+| Language         | C++11                                         |
+| Lines of Code    | ~430                                          |
+| Classes          | 9 (2 concrete, 3 visitors, 4 utilities)       |
+| Design Patterns  | 4 (Polymorphism, Factory, Visitor, Composite) |
+| Time Complexity  | O(d log n) for operations                     |
+| Space Complexity | O(n) where n = total nodes                    |
+| Memory Overhead  | Minimal (tree structure only)                 |
+| Build Time       | <1 second                                     |
 
 ## Learning Outcomes
 

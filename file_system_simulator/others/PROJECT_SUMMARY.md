@@ -9,6 +9,7 @@ Successfully implemented a production-quality hierarchical file system simulator
 ## Core Deliverables
 
 ### 1. Source Files
+
 - **file_system.cpp** (~430 lines, fully functional)
 - **Makefile** (build automation)
 - **README.md** (comprehensive documentation)
@@ -30,6 +31,7 @@ Successfully implemented a production-quality hierarchical file system simulator
 ### Design Patterns Used
 
 #### 1. **Polymorphism** (Base Node Hierarchy)
+
 ```cpp
 class Node {                    // Abstract base
     virtual NodeType getType() = 0;
@@ -45,6 +47,7 @@ class Directory : public Node { ... }   // Concrete: hierarchical container
 **Why**: Enforces type-safe interface contract, enables polymorphic traversal
 
 #### 2. **Factory Pattern** (Centralized Creation)
+
 ```cpp
 class NodeFactory {
     static Node* createFile(const string& name, size_t size = 0);
@@ -54,7 +57,8 @@ class NodeFactory {
 };
 ```
 
-**Benefits**: 
+**Benefits**:
+
 - Decouples creation from usage
 - Single point of control
 - Easy to extend (add symlinks, shortcuts, etc.)
@@ -65,6 +69,7 @@ class NodeFactory {
 Three visitor implementations:
 
 **PrintVisitor** - Hierarchical display with indentation
+
 ```cpp
 class PrintVisitor : public NodeVisitor {
     void visit(File* file);        // Display file info
@@ -73,6 +78,7 @@ class PrintVisitor : public NodeVisitor {
 ```
 
 **SearchVisitor** - Find nodes by name substring
+
 ```cpp
 class SearchVisitor : public NodeVisitor {
     vector<string> results;        // Accumulate matching paths
@@ -81,6 +87,7 @@ class SearchVisitor : public NodeVisitor {
 ```
 
 **SizeVisitor** - Calculate total disk usage
+
 ```cpp
 class SizeVisitor : public NodeVisitor {
     size_t getTotalSize() const;   // Recursive summation
@@ -90,7 +97,8 @@ class SizeVisitor : public NodeVisitor {
 **Advantage**: Open/Closed Principle - Add operations without modifying nodes
 
 #### 4. **Composite Pattern** (Tree Hierarchy)
-- Directory contains map<string, Node*> children
+
+- Directory contains map<string, Node\*> children
 - Enables recursive size calculation, deep cloning, tree traversal
 - Natural representation of file system semantics
 
@@ -100,26 +108,27 @@ class SizeVisitor : public NodeVisitor {
 
 ### Data Structure Choices
 
-| Component | Type | Rationale |
-|-----------|------|-----------|
-| Children Map | `map<string, Node*>` | O(log n) lookup, maintains order, clean iteration |
-| Search Results | `vector<string>` | Dynamic sizing, index access |
-| Path Components | `vector<string>` | Split and store path segments |
+| Component       | Type                 | Rationale                                         |
+| --------------- | -------------------- | ------------------------------------------------- |
+| Children Map    | `map<string, Node*>` | O(log n) lookup, maintains order, clean iteration |
+| Search Results  | `vector<string>`     | Dynamic sizing, index access                      |
+| Path Components | `vector<string>`     | Split and store path segments                     |
 
 ### Algorithm Complexity
 
-| Operation | Complexity | Notes |
-|-----------|-----------|-------|
-| Create file/directory | O(d) | d = path depth, O(log n) per step |
-| Delete node | O(d) | Navigate + erase child |
-| Copy subtree | O(n) | Recursive clone of all nodes |
-| Search by name | O(n) | Full tree traversal |
-| Calculate size | O(n) | Recurse all nodes |
-| Get child by name | O(log n) | Map lookup |
+| Operation             | Complexity | Notes                             |
+| --------------------- | ---------- | --------------------------------- |
+| Create file/directory | O(d)       | d = path depth, O(log n) per step |
+| Delete node           | O(d)       | Navigate + erase child            |
+| Copy subtree          | O(n)       | Recursive clone of all nodes      |
+| Search by name        | O(n)       | Full tree traversal               |
+| Calculate size        | O(n)       | Recurse all nodes                 |
+| Get child by name     | O(log n)   | Map lookup                        |
 
 ### Key Algorithms
 
 **1. Path Navigation**
+
 ```cpp
 Directory* navigatePath(const string& path) {
     // Split /home/user/docs into [home, user, docs]
@@ -131,6 +140,7 @@ Directory* navigatePath(const string& path) {
 ```
 
 **2. Deep Copy (Clone)**
+
 ```cpp
 Node* clone() const {
     // Recursively clone entire subtree
@@ -140,6 +150,7 @@ Node* clone() const {
 ```
 
 **3. Tree Traversal (Visitor Pattern)**
+
 ```cpp
 void visit(Directory* dir) {
     // Process current directory
@@ -167,6 +178,7 @@ The demonstration harness tests all major functionality:
 ```
 
 **Output Sample**:
+
 ```
 === FILE SYSTEM TREE ===
 ├─ DIR  | / | Items: 1
@@ -191,16 +203,19 @@ The demonstration harness tests all major functionality:
 ## Design Decisions & Trade-offs
 
 ### Why Pointer-Based Implementation?
+
 - **Pros**: Memory efficiency, explicit ownership control, compatibility with older C++ standards
 - **Cons**: Manual memory management (mitigated by explicit destructor)
 - **Note**: shared_ptr version encountered compatibility issues with older g++ versions
 
 ### Why std::map over std::unordered_map?
+
 - **Pros**: O(log n) lookup, stable ordering, cleaner debugging, consistent performance
 - **Cons**: Slightly slower than O(1) hashmap
 - **Rationale**: Ordered iteration useful for tree display, performance adequate for practical file systems
 
 ### Why Visitor Pattern?
+
 - **Pros**: Multiple operations without modifying node classes
 - **Cons**: Slightly more verbose than virtual methods on nodes
 - **Rationale**: Clean separation of concerns, easy to add new visitors (metrics, validation, etc.)
@@ -210,17 +225,20 @@ The demonstration harness tests all major functionality:
 ## Building & Running
 
 ### Compilation
+
 ```bash
 cd file_system_simulator
 g++ -std=c++11 -Wall -Wextra -O2 file_system.cpp -o file_system
 ```
 
 ### Execution
+
 ```bash
 ./file_system
 ```
 
 ### Make Support
+
 ```bash
 make              # Build
 make run          # Run
@@ -248,17 +266,17 @@ If expanding the project:
 
 ## Technical Specifications
 
-| Aspect | Details |
-|--------|---------|
-| **Language** | C++11 (compatible with C++14/17) |
-| **Lines of Code** | ~430 (main) + ~100 (header docs) |
-| **Compilation Time** | <1 second |
-| **Binary Size** | ~150 KB (stripped) |
-| **Memory Usage** | ~5 MB (demo) |
-| **Time Complexity** | O(d log n) operations |
-| **Space Complexity** | O(n) where n = total nodes |
-| **Patterns** | 4 major (Polymorphism, Factory, Visitor, Composite) |
-| **Thread-Safety** | Single-threaded (easily extensible) |
+| Aspect               | Details                                             |
+| -------------------- | --------------------------------------------------- |
+| **Language**         | C++11 (compatible with C++14/17)                    |
+| **Lines of Code**    | ~430 (main) + ~100 (header docs)                    |
+| **Compilation Time** | <1 second                                           |
+| **Binary Size**      | ~150 KB (stripped)                                  |
+| **Memory Usage**     | ~5 MB (demo)                                        |
+| **Time Complexity**  | O(d log n) operations                               |
+| **Space Complexity** | O(n) where n = total nodes                          |
+| **Patterns**         | 4 major (Polymorphism, Factory, Visitor, Composite) |
+| **Thread-Safety**    | Single-threaded (easily extensible)                 |
 
 ---
 

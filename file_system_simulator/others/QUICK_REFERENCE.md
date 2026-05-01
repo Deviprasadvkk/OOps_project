@@ -6,7 +6,7 @@
 **Language**: C++11  
 **Patterns**: Polymorphism, Factory, Visitor, Composite  
 **Status**: ✓ Complete & Tested  
-**Lines of Code**: ~430 (source) + ~150 (docs)  
+**Lines of Code**: ~430 (source) + ~150 (docs)
 
 ---
 
@@ -27,16 +27,19 @@ file_system_simulator/
 ## 🚀 Quick Start
 
 ### Compile
+
 ```bash
 g++ -std=c++11 -Wall -Wextra -O2 file_system.cpp -o file_system
 ```
 
 ### Run
+
 ```bash
 ./file_system
 ```
 
 ### Using Make
+
 ```bash
 make clean        # Remove old binaries
 make              # Compile
@@ -48,6 +51,7 @@ make run          # Compile and run
 ## 🏗️ Architecture Overview
 
 ### Class Hierarchy
+
 ```
 Node (abstract)
 ├── File (concrete)
@@ -58,30 +62,33 @@ Node (abstract)
 
 ### Design Patterns
 
-| Pattern | Classes | Purpose |
-|---------|---------|---------|
-| **Polymorphism** | Node, File, Directory | Type-safe interface |
-| **Factory** | NodeFactory | Centralized creation |
-| **Visitor** | PrintVisitor, SearchVisitor, SizeVisitor | Flexible traversals |
-| **Composite** | Directory with children | Tree hierarchy |
+| Pattern          | Classes                                  | Purpose              |
+| ---------------- | ---------------------------------------- | -------------------- |
+| **Polymorphism** | Node, File, Directory                    | Type-safe interface  |
+| **Factory**      | NodeFactory                              | Centralized creation |
+| **Visitor**      | PrintVisitor, SearchVisitor, SizeVisitor | Flexible traversals  |
+| **Composite**    | Directory with children                  | Tree hierarchy       |
 
 ---
 
 ## 📊 Core Operations
 
 ### Creation
+
 ```cpp
 fs.createDirectory("/home/user/documents");
 fs.createFile("/home/user/documents/resume.txt", 2048);
 ```
 
 ### Traversal & Search
+
 ```cpp
 fs.printTree();                          // Display tree structure
 vector<string> results = fs.searchNode("documents");  // Find by name
 ```
 
 ### Manipulation
+
 ```cpp
 fs.copyNode("/src/file.txt", "/dest/");
 fs.moveNode("/old/path", "/new/path");
@@ -89,6 +96,7 @@ fs.deleteNode("/unwanted/file.txt");
 ```
 
 ### Statistics
+
 ```cpp
 size_t totalSize = fs.getTotalSize();    // Bytes in entire tree
 ```
@@ -97,35 +105,39 @@ size_t totalSize = fs.getTotalSize();    // Bytes in entire tree
 
 ## 🔄 Time Complexity Cheat Sheet
 
-| Operation | Complexity | Example |
-|-----------|-----------|---------|
-| Create file/dir | O(d log n) | d=5, n=10 → ~20 ops |
-| Delete file/dir | O(d log n) | Navigate + erase |
-| Copy subtree | O(n) | Deep recursive clone |
-| Search | O(n) | Full tree traversal |
-| Get size | O(n) | Recurse all nodes |
-| List children | O(k log k) | k = children count |
+| Operation       | Complexity | Example              |
+| --------------- | ---------- | -------------------- |
+| Create file/dir | O(d log n) | d=5, n=10 → ~20 ops  |
+| Delete file/dir | O(d log n) | Navigate + erase     |
+| Copy subtree    | O(n)       | Deep recursive clone |
+| Search          | O(n)       | Full tree traversal  |
+| Get size        | O(n)       | Recurse all nodes    |
+| List children   | O(k log k) | k = children count   |
 
 ---
 
 ## 💡 Key Design Decisions
 
 ### Why Polymorphism?
+
 - Type-safe file/directory handling
 - Enforced interface contracts
 - Enables polymorphic traversal with visitors
 
 ### Why Factory Pattern?
+
 - Single creation point
 - Easy to extend (add symlinks, shortcuts)
 - Centralized type checking
 
 ### Why Visitor Pattern?
+
 - Add operations without modifying nodes
 - Clean separation of concerns
 - Open/Closed Principle compliance
 
 ### Why std::map (not unordered_map)?
+
 - O(log n) lookup (vs O(1) avg)
 - Stable ordering for display
 - More predictable performance
@@ -134,17 +146,17 @@ size_t totalSize = fs.getTotalSize();    // Bytes in entire tree
 
 ## 📝 Code Statistics
 
-| Metric | Value |
-|--------|-------|
-| Total Classes | 9 |
-| Polymorphic Classes | 2 |
-| Visitor Implementations | 3 |
-| Pure Virtual Methods | 4 |
-| Total Methods | ~50 |
-| Comments | ~40% of code |
-| Const-Correctness | ✓ Complete |
-| Error Handling | ✓ Null checks |
-| Memory Leaks | ✓ None |
+| Metric                  | Value         |
+| ----------------------- | ------------- |
+| Total Classes           | 9             |
+| Polymorphic Classes     | 2             |
+| Visitor Implementations | 3             |
+| Pure Virtual Methods    | 4             |
+| Total Methods           | ~50           |
+| Comments                | ~40% of code  |
+| Const-Correctness       | ✓ Complete    |
+| Error Handling          | ✓ Null checks |
+| Memory Leaks            | ✓ None        |
 
 ---
 
@@ -185,12 +197,12 @@ The built-in harness tests:
 
 ## 📈 Performance Characteristics
 
-| Scenario | Time | Space |
-|----------|------|-------|
-| Create 100-file system | ~5ms | 50KB |
-| Search 1000-file tree | ~10ms | -  |
-| Copy 500-node subtree | ~20ms | 250KB |
-| Print 10-level deep tree | ~2ms | 100 bytes (stack) |
+| Scenario                 | Time  | Space             |
+| ------------------------ | ----- | ----------------- |
+| Create 100-file system   | ~5ms  | 50KB              |
+| Search 1000-file tree    | ~10ms | -                 |
+| Copy 500-node subtree    | ~20ms | 250KB             |
+| Print 10-level deep tree | ~2ms  | 100 bytes (stack) |
 
 ---
 
@@ -234,16 +246,20 @@ The built-in harness tests:
 ## 🎯 Interview Talking Points
 
 ### "Tell me about the design patterns"
-> *File uses Factory Pattern for centralized creation, Visitor Pattern for flexible tree traversals, Polymorphism for type-safe file/directory handling, and Composite for hierarchical structure.*
+
+> _File uses Factory Pattern for centralized creation, Visitor Pattern for flexible tree traversals, Polymorphism for type-safe file/directory handling, and Composite for hierarchical structure._
 
 ### "How do you handle operations?"
-> *Path navigation is O(d log n) where d is depth using map-based child lookup. Copy is O(n) with recursive cloning. Search is O(n) full traversal. All operations use visitors to maintain separation of concerns.*
+
+> _Path navigation is O(d log n) where d is depth using map-based child lookup. Copy is O(n) with recursive cloning. Search is O(n) full traversal. All operations use visitors to maintain separation of concerns._
 
 ### "What would you improve?"
-> *Add symbolic links as a new Node subclass, implement file permissions/quotas, add transaction support for atomic operations, and create a shell interface for interactive use.*
+
+> _Add symbolic links as a new Node subclass, implement file permissions/quotas, add transaction support for atomic operations, and create a shell interface for interactive use._
 
 ### "Why these patterns?"
-> *Factory provides a single creation point for future extensions. Visitor allows adding operations without modifying core classes. Polymorphism ensures type safety. Composite naturally represents file system hierarchy.*
+
+> _Factory provides a single creation point for future extensions. Visitor allows adding operations without modifying core classes. Polymorphism ensures type safety. Composite naturally represents file system hierarchy._
 
 ---
 
@@ -265,16 +281,19 @@ The built-in harness tests:
 ## 📞 Quick Debugging
 
 ### Tree not displaying?
+
 - Check `printTree()` in main
 - Verify directories were created
 - Check PrintVisitor logic
 
 ### Copy not working?
+
 - Verify source path exists (use search first)
 - Check destination is directory
 - Inspect navigatePath() navigation
 
 ### Size wrong?
+
 - Ensure all files created with correct size parameter
 - Check SizeVisitor recursion
 - Verify recursive size is called on root
@@ -301,6 +320,7 @@ After building this project, you understand:
 ## 🚀 Career Impact
 
 **What this demonstrates**:
+
 - Professional C++ competency
 - Strong OOP design skills
 - Algorithmic thinking
@@ -309,6 +329,7 @@ After building this project, you understand:
 - Portfolio-quality code
 
 **Perfect for**:
+
 - Systems programming interviews
 - C++ software engineer positions
 - Technical interviews
