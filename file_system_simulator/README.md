@@ -68,10 +68,7 @@ make run
 For detailed information, see the documentation in the `others/` folder:
 
 - **others/PROJECT_SUMMARY.md** - Architecture analysis and design decisions
-- **others/QUICK_REFERENCE.md** - Quick lookup guide with examples
-- **others/CV_RESUME_GUIDE.md** - Interview preparation materials
-- **others/INDEX.md** - Navigation guide and file index
-- **others/FINAL_REPORT.md** - Project completion report and metrics
+- **others/INDEX.md** - Complete navigation guide and file index
 
 ## Code Quality
 
@@ -140,17 +137,6 @@ By studying this project, you'll understand:
 - ✅ Algorithm complexity analysis
 - ✅ Professional code organization
 - ✅ Memory-safe C++ practices
-
-## Interview Ready
-
-This project includes comprehensive interview preparation materials:
-
-- Multiple resume versions (1-line, 3-line, 8-line)
-- Interview Q&A scripts with prepared answers
-- Technical talking points and presentation outlines
-- Design decision rationale and trade-off analysis
-
-See `others/CV_RESUME_GUIDE.md` for complete preparation materials.
 
 ## License
 

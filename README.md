@@ -53,12 +53,10 @@ file_system_simulator/
 ├── file_system.cpp           # Main implementation (430 lines)
 ├── file_system.exe          # Compiled binary
 ├── Makefile                 # Build automation
-├── README.md                # Full technical documentation
-├── PROJECT_SUMMARY.md       # Architecture and design analysis
-├── QUICK_REFERENCE.md       # Cheat sheets and examples
-├── CV_RESUME_GUIDE.md       # Interview preparation
-├── INDEX.md                 # Navigation guide
-└── FINAL_REPORT.md         # Project completion report
+├── README.md                # This file - Quick overview
+└── others/
+    ├── PROJECT_SUMMARY.md   # Deep architecture analysis
+    └── INDEX.md             # Complete file index
 ```
 
 ## Design Patterns
@@ -98,14 +96,11 @@ NodeFactory::createDirectory()
 
 ## Documentation
 
-The project includes comprehensive documentation:
+The project includes focused documentation:
 
-- **README.md** - Full API documentation and build instructions
-- **PROJECT_SUMMARY.md** - Deep architecture analysis and design decisions
-- **QUICK_REFERENCE.md** - Quick lookup guide with examples and cheat sheets
-- **CV_RESUME_GUIDE.md** - Interview preparation materials and talking points
-- **INDEX.md** - Navigation guide and file index
-- **FINAL_REPORT.md** - Completion report and project metrics
+- **file_system_simulator/README.md** - Technical overview and usage
+- **file_system_simulator/others/PROJECT_SUMMARY.md** - Architecture analysis and design decisions
+- **file_system_simulator/others/INDEX.md** - Navigation guide and file index
 
 ## Code Quality
 
@@ -187,16 +182,6 @@ By studying this project, you'll understand:
 8. **Serialization** - Save/load to disk
 9. **Compression** - Archive support
 10. **Timestamps** - Access/modification tracking
-
-## Interview Talking Points
-
-**Design Pattern Mastery**: Demonstrates understanding of four major OOP patterns working together naturally
-
-**Algorithm Analysis**: O(d·log n) complexity analysis with documented trade-offs
-
-**Code Quality**: Production-ready implementation with error handling and memory safety
-
-**System Design**: Proper separation of concerns with visitor pattern for extensibility
 
 ## License
 
