@@ -189,8 +189,4 @@ This is a portfolio/educational project.
 
 ## Author
 
-Deviprasad VKK
-
----
-
-**Status**: ✅ Production-Ready | **Quality**: Professional | **Interview-Ready**: Yes
+Deviprasad V K
